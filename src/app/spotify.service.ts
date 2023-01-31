@@ -17,7 +17,7 @@ export class SpotifyService {
       'scope',
       'user-read-playback-state user-modify-playback-state user-read-currently-playing user-library-modify playlist-modify-public playlist-modify-private'
     )
-    .set('redirect_uri', 'http://localhost:4200/callback/?');
+    .set('redirect_uri', 'https://irq0.github.io/alpile/callback/?');
   accessToken: string = '';
 
   whoAmI: PublicUser | undefined;
