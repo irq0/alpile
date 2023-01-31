@@ -37,6 +37,9 @@ jobs:
       - name: Build
         run: node_modules/@angular/cli/bin/ng build --base-href 'https://irq0.github.io/alpile/'
 
+      - name: 404 page
+        run: cp dist/alpile/index.html dist/alpile/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
