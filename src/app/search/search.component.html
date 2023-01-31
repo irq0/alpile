@@ -1,20 +1,22 @@
-<h2>Search</h2>
-
-<pre>token: {{ spotify.accessToken }} </pre>
-
 <div id="search-component">
-  <label for="search-box">Album Search</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-  <button type="button" (click)="search('')">Clear Results</button>
-
-  <table>
-    <tr><th>Cover</th><th>Artist</th><th>Title</th><th>uri</th><th>actions</th></tr>
-    <tr *ngFor="let album of albums$ | async" >
-      <td><img src="{{ album.images[0].url }}" width="120" height="120" /></td>
-      <td>{{ album.artists[0].name }}</td>
-      <td>{{ album.name }}</td>
-      <td><pre>{{ album.href }}</pre></td>
-      <td><button type="button">add</button></td>
-    </tr>
-  </table>
+  <form>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        placeholder="Spotify Query"
+        #searchBox
+        id="search-box"
+        (input)="search(searchBox.value)"
+      />
+      <button mat-button matSuffix (click)="search('')">Clear Results</button>
+    </mat-form-field>
+  </form>
+  <mat-list role="list">
+    <mat-list-item *ngFor="let album of albums$ | async">
+      <img src="{{ album.images[0].url }}" width="36" height="36" />
+      {{ album.name }}&nbsp;<small>{{ album.artists[0].name }}</small>
+      <button mat-button (click)="add(album)">Add</button>
+    </mat-list-item>
+  </mat-list>
 </div>

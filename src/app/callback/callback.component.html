@@ -1,5 +1,4 @@
-<h2>Spotify Auth callback</h2>
-<p>{{ message }}</p>
-<div *ngIf="ok">
-  <a routerLink="/search">awesome</a>
+<div *ngIf="!ok">
+  <h2>Spotify Auth callback</h2>
+  <p>{{ message }}</p>
 </div>

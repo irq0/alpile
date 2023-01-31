@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SpotifyService } from '../spotify.service'
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { SpotifyService } from '../spotify.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,10 +9,19 @@ import { SpotifyService } from '../spotify.service'
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+  constructor(private spotify: SpotifyService) {}
 
-  constructor(private spotify: SpotifyService) { }
-
-  ngOnInit(): void {
-    this.spotify.auth()
+  auth(): void {
+    this.spotify.auth();
   }
+
+  label(): string {
+    if (this.spotify.authorized()) {
+      return `Authorized: ${this.spotify.whoAmI?.display_name}`;
+    } else {
+      return 'Authorize';
+    }
+  }
+
+  ngOnInit(): void {}
 }
