@@ -33,4 +33,9 @@ export class DataService {
     this.albums[album.album.id] = album;
     this.store();
   }
+
+  remove(album: PosAlbum) {
+    delete this.albums[album.album.id];
+    this.store();
+  }
 }

@@ -4,9 +4,30 @@
     class="album"
     (dblclick)="play(album.value)"
     cdkDrag
+    (contextmenu)="showContextMenu($event, album.value)"
     (cdkDragEnded)="updatePos($event, album.key)"
     [cdkDragFreeDragPosition]="album.value.pos"
   >
     <img src="{{ album.value.album.images[0].url }}" width="200" height="200" />
   </div>
+
+  <div style="visibility: hidden; position: fixed;"
+    [style.left]="contextMenuPosition.x"
+    [style.top]="contextMenuPosition.y"
+    [matMenuTriggerFor]="contextMenu">
+  </div>
+
+  <mat-menu #contextMenu="matMenu">
+    <ng-template matMenuContent let-album="album">
+      <mat-list>
+        <mat-list-item>{{ album.album.artists[0].name }}</mat-list-item>
+        <mat-list-item>{{ album.album.name }}</mat-list-item>
+        <mat-list-item>Release: {{ album.album.release_date }}</mat-list-item>
+        <mat-list-item>Tracks: {{ album.album.total_tracks }}</mat-list-item>
+      </mat-list>
+      <button mat-menu-item (click)="play(album)">Play</button>
+      <button mat-menu-item (click)="remove(album)">Remove</button>
+      <button mat-menu-item (click)="dump(album)">Dump info to console</button>
+    </ng-template>
+  </mat-menu>
 </div>
