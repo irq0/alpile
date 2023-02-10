@@ -2,7 +2,7 @@
 
 "Album pile"
 
-![Screenshot](![Alt text](/screenshot.png?raw=true)
+![Screenshot](/screenshot.png?raw=true)
 
 ## Demo
 
